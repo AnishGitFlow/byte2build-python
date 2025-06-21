@@ -6,20 +6,20 @@ Welcome to my collection of **Python-based hands-on projects** ranging from begi
 
 ## 📁 Project Structure
 
-### 🔧 Section 12: Hands-On Python Projects (6 Projects | 57 min)
+### 🔧 Hands-On Python Projects (6 Projects)
 Small Python applications focusing on core programming concepts and practical utility.
 
 #### Projects:
-1. ✅ **Build a Simple Calculator** – A basic command-line calculator for arithmetic operations. *(6 min)*
-2. 🧠 **Who Wants to Be a Millionaire Game** – A terminal-based trivia game using conditional logic. *(12 min)*
-3. 📄 **PDFMerger** – Merge multiple PDF files using Python and `PyPDF2`. *(8 min)*
-4. 🗞️ **Build a News App Using APIs** – Fetch and display news headlines using `NewsAPI`. *(13 min)*
-5. 💧 **Drink Water Reminder App** – Console-based app to remind users to stay hydrated. *(5 min)*
-6. 🤖 **AI Powered Virtual Assistant** – A basic virtual assistant using speech recognition and automation. *(14 min)*
+1. ✅ **Build a Simple Calculator** – A basic command-line calculator for arithmetic operations.
+2. 🧠 **Who Wants to Be a Millionaire Game** – A terminal-based trivia game using conditional logic.
+3. 📄 **PDFMerger** – Merge multiple PDF files using Python and `PyPDF2`.
+4. 🗞️ **Build a News App Using APIs** – Fetch and display news headlines using `NewsAPI`.
+5. 💧 **Drink Water Reminder App** – Console-based app to remind users to stay hydrated. 
+6. 🤖 **AI Powered Virtual Assistant** – A basic virtual assistant using speech recognition and automation.
 
 ---
 
-### 🌐 Section 13: Building Web Applications using Flask (12 Projects | 1hr 33min)
+### 🌐 Building Web Applications using Flask (12 Projects)
 This section focuses on building web apps with **Flask**, Python's lightweight web framework.
 
 Projects include:
@@ -32,7 +32,7 @@ Projects include:
 
 ---
 
-### 🎥 Section 14: Project VidSnapAI – An AI Powered TikTok/Reel Generator (7 Projects | 1hr 20min)
+### 🎥 Project VidSnapAI – An AI Powered TikTok/Reel Generator (7 Projects)
 An end-to-end AI-based project that:
 - Scrapes or generates trending content
 - Uses text-to-video tools
@@ -61,7 +61,7 @@ This section demonstrates:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/python-projects-portfolio.git
+   git clone https://github.com/anishgitflow/byte2build-python.git
    cd python-projects-portfolio
 
 2. Create a virtual environment:
