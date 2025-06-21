@@ -63,14 +63,11 @@ This section demonstrates:
    ```bash
    git clone https://github.com/yourusername/python-projects-portfolio.git
    cd python-projects-portfolio
-```
 
 2. Create a virtual environment:
-
    ```bash
    python -m venv venv
    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-```
 
 3. Install dependencies:
 
