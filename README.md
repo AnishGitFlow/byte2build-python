@@ -19,7 +19,7 @@ Small Python applications focusing on core programming concepts and practical ut
 
 ---
 
-### 🌐 Building Web Applications using Flask (12 Projects)
+### 🌐 Building Web Applications using Flask
 This section focuses on building web apps with **Flask**, Python's lightweight web framework.
 
 Projects include:
@@ -32,7 +32,7 @@ Projects include:
 
 ---
 
-### 🎥 Project VidSnapAI – An AI Powered TikTok/Reel Generator (7 Projects)
+### 🎥 Project VidSnapAI – An AI Powered TikTok/Reel Generator
 An end-to-end AI-based project that:
 - Scrapes or generates trending content
 - Uses text-to-video tools
