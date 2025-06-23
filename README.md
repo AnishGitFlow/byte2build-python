@@ -62,7 +62,7 @@ This section demonstrates:
 1. Clone the repository:
    ```bash
    git clone https://github.com/anishgitflow/byte2build-python.git
-   cd python-projects-portfolio
+   cd byte2build-python
 
 2. Create a virtual environment:
    ```bash
