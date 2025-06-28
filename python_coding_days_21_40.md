@@ -1270,20 +1270,514 @@ YouTube: "Tag a friend who loves algorithms!"
 
 ---
 
-## 🎯 Summary: Days 21-40
+# 50 Days of Python Coding Interview Questions
+## Days 41-50: Advanced Data Structures & Pandas Mastery
 
-These 20 problems covered advanced data manipulation, algorithm patterns, and real-world programming scenarios. Key themes included:
+---
 
-- **Frequency Analysis**: Counting, finding most common elements
-- **Data Cleaning**: Handling nulls, duplicates, formatting
-- **String Processing**: Parsing, validation, transformation
-- **Algorithm Patterns**: Two pointers, sliding window, recursion
-- **Data Structures**: Stacks, heaps, sets for efficient solutions
+## ✅ Day 41: Group Anagrams
 
-**Skills Developed:**
-- Advanced Python data structures usage
-- Algorithm optimization techniques
-- Real-world data processing patterns
-- Interview-ready problem-solving approaches
+**Problem Statement:**  
+Group a list of strings into anagrams (words with the same letters rearranged).
 
-Ready for Days 41-50? 🚀
+**Input:** `["eat", "tea", "tan", "ate", "nat", "bat"]`  
+**Output:** `[["eat", "tea", "ate"], ["tan", "nat"], ["bat"]]`
+
+**Difficulty Level:** Medium  
+**Key Concepts Tested:** Hashing, Strings, Lists, Dictionary Operations
+
+**Python Solution Code:**
+```python
+from collections import defaultdict
+
+def group_anagrams(strs):
+    anagrams = defaultdict(list)
+    for word in strs:
+        key = tuple(sorted(word))
+        anagrams[key].append(word)
+    return list(anagrams.values())
+```
+
+**Explanation:**
+- Sort characters in each word to create a unique key for anagrams
+- Use defaultdict to group words with the same sorted character pattern
+- Return grouped anagram lists
+
+**Optimization Tip:**  
+✔️ Time complexity: O(n × m log m) where n is number of words, m is average word length
+
+**Call to Action:**  
+Instagram: "Save this for string manipulation! 🔖"  
+YouTube: "Try it and comment your results!"
+
+---
+
+## ✅ Day 42: Longest Consecutive Sequence
+
+**Problem Statement:**  
+Find the length of the longest consecutive elements sequence in an unsorted array.
+
+**Input:** `[100, 4, 200, 1, 3, 2]`  
+**Output:** `4` (sequence: [1, 2, 3, 4])
+
+**Difficulty Level:** Medium  
+**Key Concepts Tested:** Sets, Sequence Detection, Optimization
+
+**Python Solution Code:**
+```python
+def longest_consecutive(nums):
+    num_set = set(nums)
+    longest = 0
+    
+    for n in num_set:
+        # Only start counting from the beginning of a sequence
+        if n - 1 not in num_set:
+            length = 1
+            while n + length in num_set:
+                length += 1
+            longest = max(longest, length)
+    
+    return longest
+```
+
+**Explanation:**
+- Convert to set for O(1) lookups
+- Only start sequence counting from numbers that don't have a predecessor
+- Track the maximum sequence length found
+
+**Optimization Tip:**  
+✔️ O(n) time complexity despite nested loops - each number is visited at most twice
+
+**Call to Action:**  
+Instagram: "Master sequence problems! 🔥"  
+YouTube: "Subscribe for more algorithm content!"
+
+---
+
+## ✅ Day 43: Find Peak Element
+
+**Problem Statement:**  
+Find an element in an array that is greater than its neighbors. Array may have multiple peaks.
+
+**Input:** `[1, 2, 3, 1]`  
+**Output:** `2` (index of peak element 3)
+
+**Difficulty Level:** Medium  
+**Key Concepts Tested:** Binary Search, Array Traversal
+
+**Python Solution Code:**
+```python
+def find_peak(nums):
+    left, right = 0, len(nums) - 1
+    
+    while left < right:
+        mid = (left + right) // 2
+        if nums[mid] > nums[mid + 1]:
+            right = mid
+        else:
+            left = mid + 1
+    
+    return left
+```
+
+**Explanation:**
+- Use binary search to efficiently find a peak
+- Compare middle element with its right neighbor
+- Move towards the side that's likely to contain a peak
+
+**Optimization Tip:**  
+✔️ O(log n) time complexity using binary search instead of O(n) linear scan
+
+**Call to Action:**  
+Instagram: "Binary search mastery! 🎯"  
+YouTube: "Comment your peak finding strategy!"
+
+---
+
+## ✅ Day 44: Find Duplicates in DataFrame Column
+
+**Problem Statement:**  
+Identify and return all duplicate rows in a pandas DataFrame based on a specific column.
+
+**Input:** DataFrame with duplicate values in 'email' column  
+**Output:** DataFrame containing all rows with duplicate emails
+
+**Difficulty Level:** Easy  
+**Key Concepts Tested:** Pandas, Data Analysis, Duplicate Detection
+
+**Python Solution Code:**
+```python
+import pandas as pd
+
+def find_duplicates(df, column):
+    return df[df.duplicated([column], keep=False)]
+
+# Alternative: Get only the duplicate values
+def get_duplicate_values(df, column):
+    return df[df[column].duplicated(keep=False)][column].unique()
+```
+
+**Explanation:**
+- Use `.duplicated()` with `keep=False` to mark all duplicates (not just subsequent ones)
+- Filter DataFrame to return only rows with duplicates
+- Alternative method shows just the duplicate values
+
+**Optimization Tip:**  
+✔️ Use `keep='first'` or `keep='last'` to keep only one instance of duplicates
+
+**Call to Action:**  
+Instagram: "Clean your data like a pro! 🧹"  
+YouTube: "Share your data cleaning tips!"
+
+---
+
+## ✅ Day 45: Drop Missing Data
+
+**Problem Statement:**  
+Remove rows with missing values from a pandas DataFrame with flexible options.
+
+**Input:** DataFrame with NaN values  
+**Output:** Cleaned DataFrame without missing data
+
+**Difficulty Level:** Easy  
+**Key Concepts Tested:** Pandas, Data Cleaning, Missing Value Handling
+
+**Python Solution Code:**
+```python
+import pandas as pd
+
+def drop_missing(df, strategy='any'):
+    if strategy == 'any':
+        return df.dropna()  # Drop if any column has NaN
+    elif strategy == 'all':
+        return df.dropna(how='all')  # Drop only if all columns are NaN
+    elif strategy == 'threshold':
+        return df.dropna(thresh=len(df.columns)//2)  # Keep if at least half columns have data
+
+# Drop missing from specific columns only
+def drop_missing_columns(df, columns):
+    return df.dropna(subset=columns)
+```
+
+**Explanation:**
+- `dropna()` removes rows with any NaN values by default
+- `how='all'` only drops rows where all values are NaN
+- `thresh` parameter sets minimum number of non-null values required
+- `subset` parameter focuses on specific columns
+
+**Optimization Tip:**  
+✔️ Consider imputation strategies before dropping valuable data
+
+**Call to Action:**  
+Instagram: "Clean data = better insights! ✨"  
+YouTube: "What's your favorite data cleaning method?"
+
+---
+
+## ✅ Day 46: Find Correlation Matrix
+
+**Problem Statement:**  
+Compute and analyze the correlation matrix of numerical columns in a DataFrame.
+
+**Input:** DataFrame with numerical columns  
+**Output:** Correlation matrix showing relationships between variables
+
+**Difficulty Level:** Easy  
+**Key Concepts Tested:** Pandas, Statistical Analysis, Correlation
+
+**Python Solution Code:**
+```python
+import pandas as pd
+import numpy as np
+
+def correlation_matrix(df, method='pearson'):
+    # Basic correlation matrix
+    corr_matrix = df.corr(method=method)
+    return corr_matrix
+
+def analyze_correlations(df, threshold=0.7):
+    corr_matrix = df.corr()
+    
+    # Find highly correlated pairs
+    high_corr = []
+    for i in range(len(corr_matrix.columns)):
+        for j in range(i+1, len(corr_matrix.columns)):
+            if abs(corr_matrix.iloc[i, j]) > threshold:
+                high_corr.append({
+                    'var1': corr_matrix.columns[i],
+                    'var2': corr_matrix.columns[j],
+                    'correlation': corr_matrix.iloc[i, j]
+                })
+    
+    return pd.DataFrame(high_corr)
+```
+
+**Explanation:**
+- `df.corr()` computes pairwise correlation of columns
+- Methods available: 'pearson', 'kendall', 'spearman'
+- Enhanced function identifies highly correlated variable pairs
+- Useful for feature selection and multicollinearity detection
+
+**Optimization Tip:**  
+✔️ Visualize with seaborn heatmap for better interpretation
+
+**Call to Action:**  
+Instagram: "Discover hidden relationships in your data! 🔍"  
+YouTube: "Show us your correlation insights!"
+
+---
+
+## ✅ Day 47: Apply Function to Column
+
+**Problem Statement:**  
+Apply custom transformations to DataFrame columns using various methods.
+
+**Input:** DataFrame with columns needing transformation  
+**Output:** DataFrame with transformed values
+
+**Difficulty Level:** Easy  
+**Key Concepts Tested:** Pandas, Lambda Functions, Data Transformation
+
+**Python Solution Code:**
+```python
+import pandas as pd
+
+def apply_function(df, column, func=None):
+    if func is None:
+        func = lambda x: x * 2  # Default: double the values
+    
+    df_copy = df.copy()
+    df_copy[column] = df_copy[column].apply(func)
+    return df_copy
+
+# Multiple transformation examples
+def advanced_transformations(df):
+    df_transformed = df.copy()
+    
+    # Apply different functions to different columns
+    transformations = {
+        'salary': lambda x: x * 1.1,  # 10% increase
+        'age': lambda x: 2024 - x if x > 1900 else x,  # Convert birth year to age
+        'name': lambda x: x.title(),  # Title case
+        'email': lambda x: x.lower()  # Lowercase
+    }
+    
+    for col, func in transformations.items():
+        if col in df_transformed.columns:
+            df_transformed[col] = df_transformed[col].apply(func)
+    
+    return df_transformed
+```
+
+**Explanation:**
+- `apply()` method applies a function to each element in a series
+- Lambda functions provide concise inline transformations
+- Dictionary-based approach allows multiple column transformations
+- Always work on copies to preserve original data
+
+**Optimization Tip:**  
+✔️ Use vectorized operations when possible for better performance than apply()
+
+**Call to Action:**  
+Instagram: "Transform your data with style! 🔄"  
+YouTube: "What's your favorite pandas transformation?"
+
+---
+
+## ✅ Day 48: Rename DataFrame Columns
+
+**Problem Statement:**  
+Rename DataFrame columns using various strategies for better data management.
+
+**Input:** DataFrame with unclear or inconsistent column names  
+**Output:** DataFrame with clean, standardized column names
+
+**Difficulty Level:** Easy  
+**Key Concepts Tested:** Pandas, Data Preprocessing, Column Management
+
+**Python Solution Code:**
+```python
+import pandas as pd
+import re
+
+def rename_columns(df, col_map):
+    return df.rename(columns=col_map)
+
+def clean_column_names(df):
+    """Standardize column names: lowercase, underscores, no spaces"""
+    df_clean = df.copy()
+    
+    # Clean column names
+    new_columns = []
+    for col in df_clean.columns:
+        # Convert to lowercase, replace spaces/special chars with underscores
+        clean_col = re.sub(r'[^a-zA-Z0-9]', '_', str(col).lower())
+        # Remove multiple underscores
+        clean_col = re.sub(r'_+', '_', clean_col)
+        # Remove leading/trailing underscores
+        clean_col = clean_col.strip('_')
+        new_columns.append(clean_col)
+    
+    df_clean.columns = new_columns
+    return df_clean
+
+def smart_rename(df, patterns):
+    """Rename based on patterns"""
+    rename_dict = {}
+    for old_pattern, new_name in patterns.items():
+        for col in df.columns:
+            if old_pattern.lower() in col.lower():
+                rename_dict[col] = new_name
+    
+    return df.rename(columns=rename_dict)
+```
+
+**Explanation:**
+- `rename()` method accepts a dictionary mapping old names to new names
+- `clean_column_names()` standardizes names following Python conventions
+- `smart_rename()` uses pattern matching for bulk renaming
+- Regular expressions help handle complex naming patterns
+
+**Optimization Tip:**  
+✔️ Establish naming conventions early in your data pipeline
+
+**Call to Action:**  
+Instagram: "Clean columns = clean code! 🏷️"  
+YouTube: "Share your column naming conventions!"
+
+---
+
+## ✅ Day 49: Combine Multiple DataFrames
+
+**Problem Statement:**  
+Efficiently combine multiple DataFrames using various merging strategies.
+
+**Input:** List of DataFrames to combine  
+**Output:** Single combined DataFrame
+
+**Difficulty Level:** Medium  
+**Key Concepts Tested:** Pandas, Data Concatenation, Merging Strategies
+
+**Python Solution Code:**
+```python
+import pandas as pd
+
+def concat_dfs(dfs, method='vertical'):
+    if method == 'vertical':
+        return pd.concat(dfs, ignore_index=True)
+    elif method == 'horizontal':
+        return pd.concat(dfs, axis=1)
+
+def smart_combine_dfs(dfs, on_column=None):
+    """Intelligently combine DataFrames"""
+    if not dfs:
+        return pd.DataFrame()
+    
+    if len(dfs) == 1:
+        return dfs[0]
+    
+    # If joining on a column, use merge
+    if on_column:
+        result = dfs[0]
+        for df in dfs[1:]:
+            result = pd.merge(result, df, on=on_column, how='outer')
+        return result
+    
+    # Otherwise, concatenate vertically
+    return pd.concat(dfs, ignore_index=True, sort=False)
+
+def combine_with_source(dfs, source_names):
+    """Add source identifier when combining"""
+    combined_dfs = []
+    
+    for df, source in zip(dfs, source_names):
+        df_copy = df.copy()
+        df_copy['source'] = source
+        combined_dfs.append(df_copy)
+    
+    return pd.concat(combined_dfs, ignore_index=True)
+```
+
+**Explanation:**
+- `pd.concat()` stacks DataFrames vertically (axis=0) or horizontally (axis=1)
+- `ignore_index=True` creates new sequential index
+- `pd.merge()` joins DataFrames on common columns
+- Source tracking helps maintain data lineage
+
+**Optimization Tip:**  
+✔️ Use `pd.merge()` for database-style joins, `pd.concat()` for simple stacking
+
+**Call to Action:**  
+Instagram: "Master data combination! 🔗"  
+YouTube: "Tag your data engineering friends!"
+
+---
+
+## ✅ Day 50: Group By and Aggregate
+
+**Problem Statement:**  
+Perform advanced grouping and aggregation operations on DataFrame data.
+
+**Input:** DataFrame with categorical and numerical columns  
+**Output:** Aggregated results grouped by categories
+
+**Difficulty Level:** Medium  
+**Key Concepts Tested:** Pandas, GroupBy Operations, Data Aggregation
+
+**Python Solution Code:**
+```python
+import pandas as pd
+import numpy as np
+
+def group_and_aggregate(df, by_col, agg_col, agg_func='sum'):
+    return df.groupby(by_col)[agg_col].agg(agg_func).reset_index()
+
+def advanced_groupby(df, group_cols, agg_dict):
+    """Perform multiple aggregations"""
+    return df.groupby(group_cols).agg(agg_dict).reset_index()
+
+def comprehensive_analysis(df, group_col, numeric_cols):
+    """Complete statistical analysis by group"""
+    
+    # Multiple aggregations for each numeric column
+    agg_functions = ['count', 'mean', 'median', 'std', 'min', 'max']
+    
+    results = {}
+    for col in numeric_cols:
+        if col in df.columns:
+            results[col] = agg_functions
+    
+    summary = df.groupby(group_col).agg(results)
+    
+    # Flatten column names
+    summary.columns = ['_'.join(col).strip() for col in summary.columns.values]
+    summary = summary.reset_index()
+    
+    return summary
+
+def custom_aggregations(df):
+    """Examples of custom aggregation functions"""
+    return df.groupby('category').agg({
+        'sales': ['sum', 'mean', lambda x: x.max() - x.min()],  # Range
+        'quantity': ['count', 'std'],
+        'date': ['min', 'max']  # Date range
+    })
+```
+
+**Explanation:**
+- `groupby()` creates groups based on column values
+- `agg()` applies aggregation functions to grouped data
+- Multiple aggregations can be applied simultaneously
+- Custom lambda functions enable specialized calculations
+- `reset_index()` converts grouped result back to regular DataFrame
+
+**Optimization Tip:**  
+✔️ Use vectorized aggregation functions for better performance on large datasets
+
+**Call to Action:**  
+Instagram: "Finish the challenge strong! 💪🎉"  
+YouTube: "Congratulations on completing 50 Days! Share your journey!"
+
+---
+
+**Thank you for following along on this coding journey!** 🚀
