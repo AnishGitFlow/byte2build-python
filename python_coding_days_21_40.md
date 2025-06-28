@@ -1,6 +1,5 @@
 # 50 Days of Python Coding Interview Questions
 
-
 ## Day 1: Count Unique Values in a List
 
 **Problem Statement:**  
@@ -564,10 +563,6 @@ def parse_json(json_str):
 - Use `json.loads()` to parse the string
 
 **💡 Optimization Tip:** Always wrap in try-except for production safety
-
----
-
-## Days 21-40: Advanced Data Manipulation & Algorithms
 
 ---
 
@@ -1270,11 +1265,6 @@ YouTube: "Tag a friend who loves algorithms!"
 
 ---
 
-# 50 Days of Python Coding Interview Questions
-## Days 41-50: Advanced Data Structures & Pandas Mastery
-
----
-
 ## ✅ Day 41: Group Anagrams
 
 **Problem Statement:**  
@@ -1773,10 +1763,6 @@ def custom_aggregations(df):
 
 **Optimization Tip:**  
 ✔️ Use vectorized aggregation functions for better performance on large datasets
-
-**Call to Action:**  
-Instagram: "Finish the challenge strong! 💪🎉"  
-YouTube: "Congratulations on completing 50 Days! Share your journey!"
 
 ---
 
