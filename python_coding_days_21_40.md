@@ -1,6 +1,6 @@
 # 50 Days of Python Coding Interview Questions
 
-## Day 1: Count Unique Values in a List
+## ✅Day 1: Count Unique Values in a List
 
 **Problem Statement:**  
 Write a function to count how many unique values are in a list of integers.
@@ -25,7 +25,7 @@ def count_unique(nums):
 
 ---
 
-## Day 2: Most Frequent Element
+## ✅Day 2: Most Frequent Element
 
 **Problem Statement:**  
 Find the most frequent element in a list. If there's a tie, return any one.
@@ -53,7 +53,7 @@ def most_frequent(data):
 
 ---
 
-## Day 3: Remove Outliers from Data
+## ✅Day 3: Remove Outliers from Data
 
 **Problem Statement:**  
 Given a list of numbers, remove values outside 1.5×IQR range.
@@ -86,7 +86,7 @@ def remove_outliers(nums):
 
 ---
 
-## Day 4: Find Duplicates in a Dataset
+## ✅Day 4: Find Duplicates in a Dataset
 
 **Problem Statement:**  
 Given a list of entries, return all items that appear more than once.
@@ -114,7 +114,7 @@ def find_duplicates(data):
 
 ---
 
-## Day 5: Flatten a Nested List
+## ✅Day 5: Flatten a Nested List
 
 **Problem Statement:**  
 Given a list that may contain nested lists, return a flat list.
@@ -146,7 +146,7 @@ def flatten(lst):
 
 ---
 
-## Day 6: Convert String Dates to Datetime Objects
+## ✅Day 6: Convert String Dates to Datetime Objects
 
 **Problem Statement:**  
 Convert a list of date strings (YYYY-MM-DD) into Python datetime objects.
@@ -173,7 +173,7 @@ def convert_dates(dates):
 
 ---
 
-## Day 7: Group Data by Key
+## ✅Day 7: Group Data by Key
 
 **Problem Statement:**  
 Group a list of dictionaries by a given key.
@@ -207,7 +207,7 @@ def group_by_key(data, key, value):
 
 ---
 
-## Day 8: Calculate Moving Average
+## ✅Day 8: Calculate Moving Average
 
 **Problem Statement:**  
 Given a list of numbers and a window size k, return a list of moving averages.
@@ -232,7 +232,7 @@ def moving_average(nums, k):
 
 ---
 
-## Day 9: Detect Missing Values
+## ✅Day 9: Detect Missing Values
 
 **Problem Statement:**  
 Given a list of values, return the indices where the value is None or NaN.
@@ -260,7 +260,7 @@ def find_missing(data):
 
 ---
 
-## Day 10: Count Word Frequencies in Text
+## ✅Day 10: Count Word Frequencies in Text
 
 **Problem Statement:**  
 Given a block of text, return the frequency of each word.
@@ -288,7 +288,7 @@ def word_frequencies(text):
 
 ---
 
-## Day 11: Reverse a String Without Built-in Function
+## ✅Day 11: Reverse a String Without Built-in Function
 
 **Problem Statement:**  
 Reverse a string manually (without using `[::-1]` or `reversed`).
@@ -316,7 +316,7 @@ def reverse_string(s):
 
 ---
 
-## Day 12: Check for Palindrome
+## ✅Day 12: Check for Palindrome
 
 **Problem Statement:**  
 Check if a given string is a palindrome (ignoring case and spaces).
@@ -342,7 +342,7 @@ def is_palindrome(s):
 
 ---
 
-## Day 13: Extract Domain from Email
+## ✅Day 13: Extract Domain from Email
 
 **Problem Statement:**  
 Extract domain name from an email address.
@@ -366,7 +366,7 @@ def extract_domain(email):
 
 ---
 
-## Day 14: Merge Two Sorted Lists
+## ✅Day 14: Merge Two Sorted Lists
 
 **Problem Statement:**  
 Merge two already sorted lists into one sorted list.
@@ -402,7 +402,7 @@ def merge_sorted(a, b):
 
 ---
 
-## Day 15: Check If Two Strings Are Anagrams
+## ✅Day 15: Check If Two Strings Are Anagrams
 
 **Problem Statement:**  
 Check if two strings are anagrams of each other.
@@ -426,7 +426,7 @@ def is_anagram(a, b):
 
 ---
 
-## Day 16: Find the Intersection of Two Lists
+## ✅Day 16: Find the Intersection of Two Lists
 
 **Problem Statement:**  
 Return elements common to both lists.
@@ -450,7 +450,7 @@ def intersect(a, b):
 
 ---
 
-## Day 17: Find Maximum Subarray Sum (Kadane's Algorithm)
+## ✅Day 17: Find Maximum Subarray Sum (Kadane's Algorithm)
 
 **Problem Statement:**  
 Find the contiguous subarray with the maximum sum.
@@ -479,7 +479,7 @@ def max_subarray(nums):
 
 ---
 
-## Day 18: Validate a Password
+## ✅Day 18: Validate a Password
 
 **Problem Statement:**  
 Check if a password meets the following criteria:
@@ -510,7 +510,7 @@ def is_valid(password):
 
 ---
 
-## Day 19: Remove Duplicates from List of Dicts
+## ✅Day 19: Remove Duplicates from List of Dicts
 
 **Problem Statement:**  
 Remove duplicate dictionaries based on a specific key.
@@ -540,7 +540,7 @@ def remove_dupes(data):
 
 ---
 
-## Day 20: Convert JSON String to Dictionary
+## ✅Day 20: Convert JSON String to Dictionary
 
 **Problem Statement:**  
 Convert a JSON string to a Python dictionary.
