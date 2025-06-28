@@ -1,4 +1,572 @@
 # 50 Days of Python Coding Interview Questions
+
+
+## Day 1: Count Unique Values in a List
+
+**Problem Statement:**  
+Write a function to count how many unique values are in a list of integers.
+
+**Input:** `nums = [1, 2, 2, 3, 4, 4, 4]`  
+**Output:** `4` (unique values: 1, 2, 3, 4)
+
+**Difficulty Level:** Easy  
+**Key Concepts Tested:** Sets, Lists, Basic data cleaning
+
+**Python Solution:**
+```python
+def count_unique(nums):
+    return len(set(nums))
+```
+
+**Explanation:**
+- Convert list to a `set()` to remove duplicates
+- Return the length of that set
+
+**💡 Optimization Tip:** Set lookup is O(1), total time complexity is O(n)
+
+---
+
+## Day 2: Most Frequent Element
+
+**Problem Statement:**  
+Find the most frequent element in a list. If there's a tie, return any one.
+
+**Input:** `data = [1, 2, 2, 3, 3, 3, 2]`  
+**Output:** `2` (appears 3 times)
+
+**Difficulty Level:** Easy  
+**Key Concepts Tested:** Dictionaries, Counting, Data summarization
+
+**Python Solution:**
+```python
+from collections import Counter
+
+def most_frequent(data):
+    freq = Counter(data)
+    return freq.most_common(1)[0][0]
+```
+
+**Explanation:**
+- Use `Counter` to count frequencies
+- Return the element with the highest count
+
+**💡 Optimization Tip:** Counter is optimized and readable—great for interviews
+
+---
+
+## Day 3: Remove Outliers from Data
+
+**Problem Statement:**  
+Given a list of numbers, remove values outside 1.5×IQR range.
+
+**Input:** `nums = [10, 12, 14, 15, 18, 100]`  
+**Output:** `[10, 12, 14, 15, 18]`
+
+**Difficulty Level:** Medium  
+**Key Concepts Tested:** Statistics, Data preprocessing
+
+**Python Solution:**
+```python
+import numpy as np
+
+def remove_outliers(nums):
+    q1 = np.percentile(nums, 25)
+    q3 = np.percentile(nums, 75)
+    iqr = q3 - q1
+    lower = q1 - 1.5 * iqr
+    upper = q3 + 1.5 * iqr
+    return [x for x in nums if lower <= x <= upper]
+```
+
+**Explanation:**
+- Compute Q1 and Q3 percentiles using NumPy
+- Define the IQR (Interquartile Range)
+- Filter out values outside the valid range
+
+**💡 Optimization Tip:** Uses NumPy for fast vectorized operations
+
+---
+
+## Day 4: Find Duplicates in a Dataset
+
+**Problem Statement:**  
+Given a list of entries, return all items that appear more than once.
+
+**Input:** `['apple', 'banana', 'apple', 'orange', 'banana']`  
+**Output:** `['apple', 'banana']`
+
+**Difficulty Level:** Easy  
+**Key Concepts Tested:** Sets, Dictionaries, Deduplication
+
+**Python Solution:**
+```python
+from collections import Counter
+
+def find_duplicates(data):
+    count = Counter(data)
+    return [item for item, freq in count.items() if freq > 1]
+```
+
+**Explanation:**
+- Count item frequency
+- Filter items where count > 1
+
+**💡 Optimization Tip:** Scales well for large datasets—linear time complexity
+
+---
+
+## Day 5: Flatten a Nested List
+
+**Problem Statement:**  
+Given a list that may contain nested lists, return a flat list.
+
+**Input:** `[1, [2, [3, 4]], 5]`  
+**Output:** `[1, 2, 3, 4, 5]`
+
+**Difficulty Level:** Medium  
+**Key Concepts Tested:** Recursion, Lists, Data wrangling
+
+**Python Solution:**
+```python
+def flatten(lst):
+    result = []
+    for i in lst:
+        if isinstance(i, list):
+            result.extend(flatten(i))
+        else:
+            result.append(i)
+    return result
+```
+
+**Explanation:**
+- Check if item is a list
+- If so, recursively flatten it
+- If not, append directly
+
+**💡 Optimization Tip:** Recursive but can be rewritten iteratively for large inputs
+
+---
+
+## Day 6: Convert String Dates to Datetime Objects
+
+**Problem Statement:**  
+Convert a list of date strings (YYYY-MM-DD) into Python datetime objects.
+
+**Input:** `['2023-05-01', '2023-06-10']`  
+**Output:** `[datetime.date(2023, 5, 1), datetime.date(2023, 6, 10)]`
+
+**Difficulty Level:** Easy  
+**Key Concepts Tested:** datetime, String parsing, Data formatting
+
+**Python Solution:**
+```python
+from datetime import datetime
+
+def convert_dates(dates):
+    return [datetime.strptime(date, "%Y-%m-%d").date() for date in dates]
+```
+
+**Explanation:**
+- Use `datetime.strptime()` to parse strings
+- Convert to `date()` object if time isn't needed
+
+**💡 Optimization Tip:** List comprehension improves readability and performance
+
+---
+
+## Day 7: Group Data by Key
+
+**Problem Statement:**  
+Group a list of dictionaries by a given key.
+
+**Input:**
+```python
+data = [{'city': 'NY', 'val': 1}, {'city': 'LA', 'val': 2}, {'city': 'NY', 'val': 3}]
+```
+
+**Output:** `{'NY': [1, 3], 'LA': [2]}`
+
+**Difficulty Level:** Medium  
+**Key Concepts Tested:** Grouping, Dictionaries, Looping structures
+
+**Python Solution:**
+```python
+from collections import defaultdict
+
+def group_by_key(data, key, value):
+    grouped = defaultdict(list)
+    for item in data:
+        grouped[item[key]].append(item[value])
+    return dict(grouped)
+```
+
+**Explanation:**
+- Use `defaultdict(list)` for easier grouping
+- Loop through each dictionary and group values
+
+**💡 Optimization Tip:** Avoids conditionals by using defaultdict
+
+---
+
+## Day 8: Calculate Moving Average
+
+**Problem Statement:**  
+Given a list of numbers and a window size k, return a list of moving averages.
+
+**Input:** `nums = [1, 2, 3, 4, 5]`, `k = 3`  
+**Output:** `[2.0, 3.0, 4.0]`
+
+**Difficulty Level:** Medium  
+**Key Concepts Tested:** Sliding Window, Lists, Averages
+
+**Python Solution:**
+```python
+def moving_average(nums, k):
+    return [sum(nums[i:i+k]) / k for i in range(len(nums) - k + 1)]
+```
+
+**Explanation:**
+- Slide a window of size k across the list
+- Calculate and store the average of each window
+
+**💡 Optimization Tip:** Can use cumulative sums for O(1) per window average
+
+---
+
+## Day 9: Detect Missing Values
+
+**Problem Statement:**  
+Given a list of values, return the indices where the value is None or NaN.
+
+**Input:** `[1, None, 3, float('nan'), 5]`  
+**Output:** `[1, 3]`
+
+**Difficulty Level:** Easy  
+**Key Concepts Tested:** Null handling, NaN, List traversal
+
+**Python Solution:**
+```python
+import math
+
+def find_missing(data):
+    return [i for i, x in enumerate(data) 
+            if x is None or (isinstance(x, float) and math.isnan(x))]
+```
+
+**Explanation:**
+- Check for `None` directly
+- Use `math.isnan()` for NaN detection
+
+**💡 Optimization Tip:** Handles both Python and NumPy-style missing values robustly
+
+---
+
+## Day 10: Count Word Frequencies in Text
+
+**Problem Statement:**  
+Given a block of text, return the frequency of each word.
+
+**Input:** `"data is power and data drives insight"`  
+**Output:** `{'data': 2, 'is': 1, 'power': 1, 'and': 1, 'drives': 1, 'insight': 1}`
+
+**Difficulty Level:** Easy  
+**Key Concepts Tested:** Strings, Text cleaning, Dictionaries
+
+**Python Solution:**
+```python
+from collections import Counter
+
+def word_frequencies(text):
+    words = text.lower().split()
+    return dict(Counter(words))
+```
+
+**Explanation:**
+- Lowercase all text for uniformity
+- Split by whitespace and count occurrences
+
+**💡 Optimization Tip:** For production use, consider regex-based tokenization
+
+---
+
+## Day 11: Reverse a String Without Built-in Function
+
+**Problem Statement:**  
+Reverse a string manually (without using `[::-1]` or `reversed`).
+
+**Input:** `"analytics"`  
+**Output:** `"scitylana"`
+
+**Difficulty Level:** Easy  
+**Key Concepts Tested:** Strings, Looping
+
+**Python Solution:**
+```python
+def reverse_string(s):
+    result = ''
+    for char in s:
+        result = char + result
+    return result
+```
+
+**Explanation:**
+- Loop through each character
+- Prepend each character to build reverse
+
+**💡 Optimization Tip:** Strings are immutable, so `''.join(reversed())` is more efficient in real use
+
+---
+
+## Day 12: Check for Palindrome
+
+**Problem Statement:**  
+Check if a given string is a palindrome (ignoring case and spaces).
+
+**Input:** `"Madam"`  
+**Output:** `True`
+
+**Difficulty Level:** Easy  
+**Key Concepts Tested:** Strings, Data cleaning
+
+**Python Solution:**
+```python
+def is_palindrome(s):
+    cleaned = s.replace(" ", "").lower()
+    return cleaned == cleaned[::-1]
+```
+
+**Explanation:**
+- Remove spaces and convert to lowercase
+- Compare string with its reverse
+
+**💡 Optimization Tip:** For large strings, use two-pointer approach for O(n) space
+
+---
+
+## Day 13: Extract Domain from Email
+
+**Problem Statement:**  
+Extract domain name from an email address.
+
+**Input:** `"user@openai.com"`  
+**Output:** `"openai.com"`
+
+**Difficulty Level:** Easy  
+**Key Concepts Tested:** Strings, Splitting
+
+**Python Solution:**
+```python
+def extract_domain(email):
+    return email.split('@')[1]
+```
+
+**Explanation:**
+- Use `split('@')` to separate user from domain
+
+**💡 Optimization Tip:** Add validation checks in real-world usage
+
+---
+
+## Day 14: Merge Two Sorted Lists
+
+**Problem Statement:**  
+Merge two already sorted lists into one sorted list.
+
+**Input:** `[1,3,5]` and `[2,4,6]`  
+**Output:** `[1,2,3,4,5,6]`
+
+**Difficulty Level:** Medium  
+**Key Concepts Tested:** Lists, Pointers, Sorting
+
+**Python Solution:**
+```python
+def merge_sorted(a, b):
+    i = j = 0
+    result = []
+    
+    while i < len(a) and j < len(b):
+        if a[i] < b[j]:
+            result.append(a[i])
+            i += 1
+        else:
+            result.append(b[j])
+            j += 1
+    
+    return result + a[i:] + b[j:]
+```
+
+**Explanation:**
+- Use two pointers to compare and merge
+- Append remaining elements after loop
+
+**💡 Optimization Tip:** Linear time: O(n + m)
+
+---
+
+## Day 15: Check If Two Strings Are Anagrams
+
+**Problem Statement:**  
+Check if two strings are anagrams of each other.
+
+**Input:** `"listen"`, `"silent"`  
+**Output:** `True`
+
+**Difficulty Level:** Easy  
+**Key Concepts Tested:** Sorting, Strings
+
+**Python Solution:**
+```python
+def is_anagram(a, b):
+    return sorted(a) == sorted(b)
+```
+
+**Explanation:**
+- Sort both strings and compare
+
+**💡 Optimization Tip:** Use Counter for better performance with large strings
+
+---
+
+## Day 16: Find the Intersection of Two Lists
+
+**Problem Statement:**  
+Return elements common to both lists.
+
+**Input:** `[1,2,3]` and `[2,3,4]`  
+**Output:** `[2,3]`
+
+**Difficulty Level:** Easy  
+**Key Concepts Tested:** Sets, Lists
+
+**Python Solution:**
+```python
+def intersect(a, b):
+    return list(set(a) & set(b))
+```
+
+**Explanation:**
+- Convert to sets and use `&` operator
+
+**💡 Optimization Tip:** Time complexity: O(n + m)
+
+---
+
+## Day 17: Find Maximum Subarray Sum (Kadane's Algorithm)
+
+**Problem Statement:**  
+Find the contiguous subarray with the maximum sum.
+
+**Input:** `[-2,1,-3,4,-1,2,1,-5,4]`  
+**Output:** `6` (from subarray `[4,-1,2,1]`)
+
+**Difficulty Level:** Hard  
+**Key Concepts Tested:** Arrays, Dynamic Programming
+
+**Python Solution:**
+```python
+def max_subarray(nums):
+    max_sum = current = nums[0]
+    for num in nums[1:]:
+        current = max(num, current + num)
+        max_sum = max(max_sum, current)
+    return max_sum
+```
+
+**Explanation:**
+- Track max subarray sum using dynamic approach
+- Compare current value vs sum continuation
+
+**💡 Optimization Tip:** O(n) time, O(1) space
+
+---
+
+## Day 18: Validate a Password
+
+**Problem Statement:**  
+Check if a password meets the following criteria:
+- At least 8 characters
+- Includes a digit
+- Includes an uppercase letter
+
+**Input:** `"Data2023"`  
+**Output:** `True`
+
+**Difficulty Level:** Medium  
+**Key Concepts Tested:** Strings, Regex, Validation
+
+**Python Solution:**
+```python
+import re
+
+def is_valid(password):
+    return (len(password) >= 8 and
+            re.search(r'\d', password) and
+            re.search(r'[A-Z]', password))
+```
+
+**Explanation:**
+- Use `re.search()` to validate conditions
+
+**💡 Optimization Tip:** Regex gives flexibility for rule changes
+
+---
+
+## Day 19: Remove Duplicates from List of Dicts
+
+**Problem Statement:**  
+Remove duplicate dictionaries based on a specific key.
+
+**Input:** `[{'id':1}, {'id':2}, {'id':1}]`  
+**Output:** `[{'id':1}, {'id':2}]`
+
+**Difficulty Level:** Medium  
+**Key Concepts Tested:** Sets, Dictionaries, Uniqueness
+
+**Python Solution:**
+```python
+def remove_dupes(data):
+    seen = set()
+    result = []
+    for d in data:
+        if d['id'] not in seen:
+            seen.add(d['id'])
+            result.append(d)
+    return result
+```
+
+**Explanation:**
+- Use a set to track seen IDs
+
+**💡 Optimization Tip:** Works best with hashable keys like strings/ints
+
+---
+
+## Day 20: Convert JSON String to Dictionary
+
+**Problem Statement:**  
+Convert a JSON string to a Python dictionary.
+
+**Input:** `'{"name": "Alice", "age": 30}'`  
+**Output:** `{'name': 'Alice', 'age': 30}`
+
+**Difficulty Level:** Easy  
+**Key Concepts Tested:** JSON parsing, json module
+
+**Python Solution:**
+```python
+import json
+
+def parse_json(json_str):
+    return json.loads(json_str)
+```
+
+**Explanation:**
+- Use `json.loads()` to parse the string
+
+**💡 Optimization Tip:** Always wrap in try-except for production safety
+
+---
+
 ## Days 21-40: Advanced Data Manipulation & Algorithms
 
 ---
